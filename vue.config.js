@@ -44,7 +44,7 @@ function mockServer() {
 
 module.exports = {
   // 部署时的URL
-  publicPath: isProduction ? './' : '/',
+  publicPath: isProduction ? './admin' : '/',
   lintOnSave: true,
   productionSourceMap: false,
   // 进行编译的依赖
@@ -69,6 +69,20 @@ module.exports = {
       less: {
         // 设置全局 style 变量
         // additionalData: `@import "~@/styles/variables.less";`
+      },
+      scss: {
+        /*sass-loader 8.0语法 */
+        //prependData: '@import "~@/styles/variables.scss";',
+
+        /*sass-loader 9.0写法，感谢github用户 shaonialife*/
+        additionalData(content, loaderContext) {
+          const { resourcePath, rootContext } = loaderContext
+          const relativePath = path.relative(rootContext, resourcePath)
+          if (relativePath.replace(/\\/g, '/') !== 'src/styles/variables.scss') {
+            return '@import "~@/styles/variables.scss";' + content
+          }
+          return content
+        }
       }
     }
   },

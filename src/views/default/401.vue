@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">首页</div>
+  <div class="page-401">401</div>
 </template>
 
 <script>
