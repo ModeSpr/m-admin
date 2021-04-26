@@ -71,10 +71,10 @@ module.exports = {
         // additionalData: `@import "~@/styles/variables.less";`
       },
       scss: {
-        /*sass-loader 8.0语法 */
+        /* sass-loader 8.0语法 */
         //prependData: '@import "~@/styles/variables.scss";',
 
-        /*sass-loader 9.0写法，感谢github用户 shaonialife*/
+        /* sass-loader 9.0写法 */
         additionalData(content, loaderContext) {
           const { resourcePath, rootContext } = loaderContext
           const relativePath = path.relative(rootContext, resourcePath)
@@ -87,9 +87,9 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.when(process.env.NODE_ENV === 'development', config => {
-      config.devtool('source-map') // cheap-module-eval-source-map
-    })
+    // config.when(process.env.NODE_ENV === 'development', config => {
+    //   config.devtool('source-map') // cheap-module-eval-source-map
+    // })
     // 设置别名
     config.resolve.alias
       .set('@', resolve('src'))
